@@ -13,12 +13,9 @@ import { CalendarIcon, Clock, Upload } from 'lucide-react'
 import React from 'react'
 import { toast } from 'sonner'
 
-type Props = {}
-
-const BasicInfoStep = (props: Props) => {
+const BasicInfoStep = () => {
   const { formData, updateBasicInfoField, getStepValidationErrors } =
     useWebinarStore()
-  const {webinarName,description,date,time,timeFormat}=formData.basicInfo
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
@@ -97,18 +94,18 @@ const handleTimeFormatChange = (value: string) => {
                     variant="outline"
                     className={cn(
                         'w-full justify-start text-left font-normal bg-background/50 border border-input',
-                        date && 'text-gray-500',
+                        formData.basicInfo.date && 'text-gray-500',
                         errors.date && 'border-red-400 focus-visible:ring-red-400'
                     )}
                     >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, 'PPP') : 'Select date'}
+                    {formData.basicInfo.date ? format(formData.basicInfo.date, 'PPP') : 'Select date'}
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0 !bg-background/50 border border-input">
                 <Calendar
                     mode="single"
-                    selected={date}
+                    selected={formData.basicInfo.date}
                     onSelect={handleDateChange}
                     initialFocus
                     className="bg-background"

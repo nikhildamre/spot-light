@@ -121,7 +121,7 @@ export const useWebinarStore = create<WebinarStore>((set, get) => ({
   updateCTAField: (field, value) => {
     set((state) => {
       const newCTA = { ...state.formData.cta, [field]: value }
-      const validationResult = validateCTA(newCTA)
+      const validationResult = validateCTA({ ...newCTA, ctaType: newCTA.ctaType || 'BOOK_A_CALL' })
       return {
         formData: { ...state.formData, cta: newCTA },
         validation: { ...state.validation, cta: validationResult },
@@ -148,7 +148,7 @@ export const useWebinarStore = create<WebinarStore>((set, get) => ({
         validationResult = validateBasicInfo(formData.basicInfo)
         break
       case 'cta':
-        validationResult = validateCTA(formData.cta)
+        validationResult = validateCTA({ ...formData.cta, ctaType: formData.cta.ctaType || 'BOOK_A_CALL' })
         break
       case 'additionalInfo':
         validationResult = validateAdditionalInfo(formData.additionalInfo)

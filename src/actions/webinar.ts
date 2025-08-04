@@ -4,7 +4,7 @@ import { WebinarFormState } from '@/store/useWebinarStore'
 import { onAuthenticateUser } from './auth'
 import { prismaClient } from '@/lib/prismaClient'
 import { revalidatePath } from 'next/cache'
-import { WebinarStatusEnum } from '@prisma/client'
+import { WebinarStatusEnum, CtaTypeEnum } from '@prisma/client'
 
 function combineDateTime(
   date: Date,
@@ -68,7 +68,7 @@ export const createWebinar = async (formData: WebinarFormState) => {
         startTime: combinedDateTime,
         tags: formData.cta.tags || [],
         ctaLabel: formData.cta.ctaLabel,
-        ctaType: formData.cta.ctaType,
+        ctaType: formData.cta.ctaType || CtaTypeEnum.BOOK_A_CALL,
         aiAgentId: formData.cta.aiAgent || null,
         priceId: formData.cta.priceId || null,
         lockChat: formData.additionalInfo.lockChat || false,
@@ -111,8 +111,15 @@ export const getWebinarByPresenterId = async (presenterId: string) => {
       },
     })
     return webinars
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error getting webinars:', error)
+    
+    // If database tables don't exist, return empty array
+    if (error.code === 'P2021' || error.message?.includes('does not exist')) {
+      console.log('⚠️  Database tables not found. Returning empty webinar list.')
+      return []
+    }
+    
     return []
   }
 }
@@ -126,8 +133,16 @@ export const getWebinarById = async (webinarId: string) => {
           select: {
             id: true,
             name: true,
+            clerkId: true,
+            email: true,
             profileImage: true,
             stripeConnectId: true,
+            lastLoginAt: true,
+            createdAt: true,
+            updatedAt: true,
+            deletedAt: true,
+            subscription: true,
+            stripeCustomerId: true,
           },
         },
       },

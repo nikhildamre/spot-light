@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/providers/theme-provider"
 import { Manrope } from "next/font/google";
 import {ClerkProvider} from '@clerk/nextjs'
+import ClerkDebug from '@/components/ClerkDebug'
 import "./globals.css";
 
 const manrope=Manrope({

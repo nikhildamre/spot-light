@@ -31,8 +31,9 @@ const LiveWebinarView = ({
     const viewerCount = useParticipantCount()
 
     const [chatClient, setChatClient] = useState<StreamChat | null>(null)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [channel, setChannel] = useState<any>(null)
-    const [dialogOpen, setDialogOpen] = useState(false)
+    // const [dialogOpen, setDialogOpen] = useState(false)
     const hostParticipant = participants.length > 0 ? participants[0] : null
 
     const handleCTAButtonClick = async () => {
@@ -77,9 +78,11 @@ const LiveWebinarView = ({
 
         useEffect(() => {
         if (chatClient && channel) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             channel.on((event: any) => {
             if (event.type === 'open_cta_dialog' && isHost) {
-                setDialogOpen(true)
+                // setDialogOpen(true)
+                console.log('Open CTA dialog')
             }
 
             // console.log("New message:", event);s

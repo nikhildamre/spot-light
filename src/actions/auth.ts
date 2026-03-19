@@ -19,6 +19,20 @@ export async function onAuthenticateUser() {
         where: {
           clerkId: user.id,
         },
+        select: {
+          id: true,
+          name: true,
+          clerkId: true,
+          email: true,
+          profileImage: true,
+          stripeConnectId: true,
+          lastLoginAt: true,
+          subscription: true,
+          stripeCustomerId: true,
+          deletedAt: true,
+          createdAt: true,
+          updatedAt: true,
+        },
       })
 
       if (userExists) {
@@ -34,6 +48,20 @@ export async function onAuthenticateUser() {
           email: user.emailAddresses[0].emailAddress,
           name: user.firstName + ' ' + user.lastName,
           profileImage: user.imageUrl,
+        },
+        select: {
+          id: true,
+          name: true,
+          clerkId: true,
+          email: true,
+          profileImage: true,
+          stripeConnectId: true,
+          lastLoginAt: true,
+          subscription: true,
+          stripeCustomerId: true,
+          deletedAt: true,
+          createdAt: true,
+          updatedAt: true,
         },
       })
 
@@ -62,6 +90,11 @@ export async function onAuthenticateUser() {
             email: user.emailAddresses[0].emailAddress,
             name: user.firstName + ' ' + user.lastName,
             profileImage: user.imageUrl,
+            stripeConnectId: null,
+            lastLoginAt: null,
+            subscription: false,
+            stripeCustomerId: null,
+            deletedAt: null,
             createdAt: new Date(),
             updatedAt: new Date(),
           },

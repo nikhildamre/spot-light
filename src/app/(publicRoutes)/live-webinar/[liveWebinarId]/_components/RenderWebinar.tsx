@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAttendeeStore } from '@/store/useAttendeeStore';
 import { toast } from 'sonner';
 import LiveStreamState from './LiveWebinar/LiveStreamState';
+import ParticipantState from './LiveWebinar/ParticipantState';
 import { WebinarWithPresenter } from '@/lib/type';
 
 type Props = {
@@ -48,9 +49,8 @@ const RenderWebinar = ({
                 {user?.id === webinar?.presenterId ? (
                 <LiveStreamState apiKey={apiKey} token={token} callId={callId} webinar={webinar} user={user}/>
                 ) : // Only show the participant view if they've registered
-                attendee ? (
-                // <Participant apiKey={apiKey} token={token} callId={callId} />
-                ''
+                attendee && user ? (
+                <ParticipantState apiKey={apiKey} token={token} callId={callId} webinar={webinar} user={user}/>
                 ) : (
                 <WebinarUpcomingState webinar={webinar} currentUser={user || null} />
                 )}

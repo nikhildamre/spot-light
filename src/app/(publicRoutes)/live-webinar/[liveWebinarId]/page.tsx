@@ -1,5 +1,6 @@
 import { onAuthenticateUser } from '@/actions/auth';
 import { getWebinarById } from '@/actions/webinar';
+import { generateStreamVideoToken, createOrGetCall } from '@/actions/stream';
 import React from 'react';
 import RenderWebinar from './_components/RenderWebinar';
 
@@ -26,16 +27,47 @@ const page = async ({ params, searchParams }: Props) => {
     }
 
     const checkUser = await onAuthenticateUser();
-    // Todo: Create API keys
-    const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string;
-    const token = process.env.STREAM_TOKEN as string;
-    const callId = process.env.STREAM_CALL_ID as string;
+    
+    if (!checkUser.user) {
+        return (
+            <div className="w-full min-h-screen flex justify-center items-center text-lg sm:text-4xl">
+                Please sign in to join the webinar
+            </div>
+        );
+    }
+
+    // Generate user-specific token
+    const tokenResult = await generateStreamVideoToken(checkUser.user.id);
+    
+    if (!tokenResult.success) {
+        return (
+            <div className="w-full min-h-screen flex justify-center items-center text-lg sm:text-4xl">
+                Error loading webinar: {tokenResult.error}
+            </div>
+        );
+    }
+
+    const callId = liveWebinarId; // Use webinar ID as call ID
+
+    // Create the call server-side with proper permissions
+    const callResult = await createOrGetCall(callId, checkUser.user.id);
+    
+    if (!callResult.success) {
+        return (
+            <div className="w-full min-h-screen flex justify-center items-center text-lg sm:text-4xl">
+                Error setting up webinar: {callResult.error}
+            </div>
+        );
+    }
+
+    const apiKey = tokenResult.apiKey!;
+    const token = tokenResult.token!;
 
     return (
     <div className="w-full min-h-screen mx-auto">
         <RenderWebinar
         error={error}
-        user={checkUser.user||null}
+        user={checkUser.user || null}
         webinar={webinarData}
         apiKey={apiKey}
         token={token}

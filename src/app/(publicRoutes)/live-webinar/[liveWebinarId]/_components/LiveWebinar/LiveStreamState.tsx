@@ -16,10 +16,16 @@ type Props = {
   user: User
 }
 
-const hostUser: StreamUser = { id: process.env.NEXT_PUBLIC_STREAM_USER_ID! }
-
 const LiveStreamState = ({ apiKey, token, callId, webinar, user }: Props) => {
-  const client = new StreamVideoClient({ apiKey, user: hostUser, token })
+  const streamUser: StreamUser = { id: user.id, name: user.name }
+  const client = new StreamVideoClient({ 
+    apiKey, 
+    user: streamUser, 
+    token,
+    options: {
+      logLevel: 'warn', // Reduce console noise
+    }
+  })
 
   return (
     <StreamVideo client={client}>
@@ -29,6 +35,7 @@ const LiveStreamState = ({ apiKey, token, callId, webinar, user }: Props) => {
         webinar={webinar}
         username={user.name}
         token={token}
+        userId={user.id}
       />
     </StreamVideo>
   )

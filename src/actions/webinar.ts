@@ -33,7 +33,9 @@ export const createWebinar = async (formData: WebinarFormState) => {
       return { status: 401, message: 'Unauthorized' }
     }
     const presenterId=user.user.id
-    console.log('Form Data:', formData, presenterId)
+    console.log('🤖 Creating webinar with form data:', formData)
+    console.log('🤖 AI Agent data:', formData.aiAgent)
+    console.log('🤖 AI Agent ID to save:', formData.aiAgent?.aiAgentId)
 
     if (!formData.basicInfo.webinarName) {
     return { status: 404, message: 'Webinar name is required' }
@@ -69,7 +71,7 @@ export const createWebinar = async (formData: WebinarFormState) => {
         tags: formData.cta.tags || [],
         ctaLabel: formData.cta.ctaLabel,
         ctaType: formData.cta.ctaType || CtaTypeEnum.BOOK_A_CALL,
-        aiAgentId: formData.cta.aiAgent || null,
+        aiAgentId: formData.aiAgent?.aiAgentId || null,
         priceId: formData.cta.priceId || null,
         lockChat: formData.additionalInfo.lockChat || false,
         couponCode: formData.additionalInfo.couponEnabled

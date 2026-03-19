@@ -16,6 +16,9 @@ export type WebinarFormState = {
     aiAgent?: string
     priceId?: string
   }
+  aiAgent: {
+    aiAgentId?: string | null
+  }
   additionalInfo: {
     lockChat?: boolean
     couponCode?: string
@@ -29,6 +32,10 @@ type ValidationState = {
     errors: ValidationErrors
   }
   cta: {
+    valid: boolean
+    errors: ValidationErrors
+  }
+  aiAgent: {
     valid: boolean
     errors: ValidationErrors
   }
@@ -61,6 +68,11 @@ type WebinarStore = {
     field: K,
     value: WebinarFormState['additionalInfo'][K]
     ) => void
+
+    updateAIAgentField: <K extends keyof WebinarFormState['aiAgent']>(
+    field: K,
+    value: WebinarFormState['aiAgent'][K]
+    ) => void
     addTag: (tag:string)=>void
     removeTag: (tag:string)=>void
     validateStep:(stepId: keyof WebinarFormState)=> boolean
@@ -83,6 +95,9 @@ const initialState: WebinarFormState = {
     aiAgent: '',
     priceId: '',
   },
+  aiAgent: {
+    aiAgentId: null,
+  },
   additionalInfo: {
     lockChat: false,
     couponCode: '',
@@ -93,6 +108,7 @@ const initialState: WebinarFormState = {
 const initialValidation: ValidationState = {
   basicInfo: { valid: false, errors: {} },
   cta: { valid: false, errors: {} },
+  aiAgent: { valid: true, errors: {} }, // AI agent is optional
   additionalInfo: { valid: true, errors: {} }, // Additional info is optional by default
 }
 
@@ -140,6 +156,18 @@ export const useWebinarStore = create<WebinarStore>((set, get) => ({
     })
   },
 
+  updateAIAgentField: (field, value) => {
+    set((state) => {
+      const newAIAgent = { ...state.formData.aiAgent, [field]: value }
+      // AI agent is always valid since it's optional
+      const validationResult = { valid: true, errors: {} }
+      return {
+        formData: { ...state.formData, aiAgent: newAIAgent },
+        validation: { ...state.validation, aiAgent: validationResult },
+      }
+    })
+  },
+
   validateStep: (stepId: keyof WebinarFormState) => {
     const { formData } = get()
     let validationResult
@@ -149,6 +177,10 @@ export const useWebinarStore = create<WebinarStore>((set, get) => ({
         break
       case 'cta':
         validationResult = validateCTA({ ...formData.cta, ctaType: formData.cta.ctaType || 'BOOK_A_CALL' })
+        break
+      case 'aiAgent':
+        // AI agent is always valid since it's optional
+        validationResult = { valid: true, errors: {} }
         break
       case 'additionalInfo':
         validationResult = validateAdditionalInfo(formData.additionalInfo)

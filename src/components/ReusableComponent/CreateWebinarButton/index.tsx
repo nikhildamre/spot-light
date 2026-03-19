@@ -11,6 +11,7 @@ import React, { useState } from 'react'
 import MultiStepForm from './MultiStepForm'
 import BasicInfoStep from './BasicInfoStep'
 import CTAStep from './CTAStep'
+import AIAgentStep from './AIAgentStep'
 import AdditionalInfoStep from './AdditionalInfoStep'
 import SuccessStep from './SuccessStep'
 
@@ -31,6 +32,12 @@ const CreateWebinarButton = () => {
     component: (
       <CTAStep />
     ),
+  },
+  {
+    id: 'aiAgent',
+    title: 'AI Assistant',
+    description: 'Add an AI agent to enhance your webinar with interactive voice assistance',
+    component: <AIAgentStep />,
   },
   {
     id: 'additionalInfo',

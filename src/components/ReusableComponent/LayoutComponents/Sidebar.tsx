@@ -1,6 +1,6 @@
 'use client'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { sidebarData } from '@/lib/data'
 import Link from 'next/link'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
@@ -8,6 +8,11 @@ import { UserButton } from '@clerk/nextjs'
 import { Sparkles } from 'lucide-react'
 const Sidebar = () => {
   const pathname = usePathname()
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   return (
     <div className="w-18 sm:w-28 h-screen sticky top-0 py-10 px-2 sm:px-6 border bg-background border-border flex flex-col items-center justify-start gap-10">
@@ -31,7 +36,9 @@ const Sidebar = () => {
             </TooltipProvider>
         ))}
         </div>
-        <UserButton/>
+        <div suppressHydrationWarning>
+          {isClient && <UserButton/>}
+        </div>
         </div>
     </div>
     )

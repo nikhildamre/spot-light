@@ -35,19 +35,30 @@ const MediaControls = ({ isHost, onScreenShare }: Props) => {
       // Check if already joined
       const checkCallState = () => {
         const state = call.state.callingState
-        setIsJoined(state === 'joined')
+        const wasJoined = isJoined
+        const nowJoined = state === 'joined'
+        
+        if (!wasJoined && nowJoined) {
+          console.log('✅ Successfully joined the call - media controls now available')
+        }
+        
+        setIsJoined(nowJoined)
       }
       
       checkCallState()
       
-      // Listen for call state changes - simplified approach
-      const interval = setInterval(checkCallState, 1000)
+      // Listen for call state changes
+      const subscription = call.state.callingState$.subscribe(() => {
+        checkCallState()
+      })
       
       return () => {
-        clearInterval(interval)
+        if (subscription && subscription.unsubscribe) {
+          subscription.unsubscribe()
+        }
       }
     }
-  }, [call])
+  }, [call, isJoined])
 
   const toggleCamera = async () => {
     if (!isJoined) {
@@ -57,13 +68,32 @@ const MediaControls = ({ isHost, onScreenShare }: Props) => {
     
     try {
       if (isCameraMuted) {
+        // Request browser camera permission first
+        try {
+          await navigator.mediaDevices.getUserMedia({ video: true })
+        } catch (permissionError) {
+          alert('Camera permission denied. Please allow camera access in your browser settings and try again.')
+          return
+        }
+        
         await camera.enable()
       } else {
         await camera.disable()
       }
     } catch (error) {
       console.error('Error toggling camera:', error)
-      alert('Camera error: ' + (error instanceof Error ? error.message : 'Unknown error'))
+      
+      if (error instanceof Error) {
+        if (error.message.includes('Permission denied')) {
+          alert('Camera permission denied. Please allow camera access in your browser and try again.')
+        } else if (error.message.includes('No permission to publish')) {
+          alert('Video publishing not allowed. Please check your webinar permissions.')
+        } else {
+          alert('Camera error: ' + error.message)
+        }
+      } else {
+        alert('Camera error: Unknown error occurred')
+      }
     }
   }
 
@@ -75,13 +105,32 @@ const MediaControls = ({ isHost, onScreenShare }: Props) => {
     
     try {
       if (isMicMuted) {
+        // Request browser microphone permission first
+        try {
+          await navigator.mediaDevices.getUserMedia({ audio: true })
+        } catch (permissionError) {
+          alert('Microphone permission denied. Please allow microphone access in your browser settings and try again.')
+          return
+        }
+        
         await microphone.enable()
       } else {
         await microphone.disable()
       }
     } catch (error) {
       console.error('Error toggling microphone:', error)
-      alert('Microphone error: ' + (error instanceof Error ? error.message : 'Unknown error'))
+      
+      if (error instanceof Error) {
+        if (error.message.includes('Permission denied')) {
+          alert('Microphone permission denied. Please allow microphone access in your browser and try again.')
+        } else if (error.message.includes('No permission to publish')) {
+          alert('Audio publishing not allowed. Please check your webinar permissions.')
+        } else {
+          alert('Microphone error: ' + error.message)
+        }
+      } else {
+        alert('Microphone error: Unknown error occurred')
+      }
     }
   }
 
@@ -94,12 +143,12 @@ const MediaControls = ({ isHost, onScreenShare }: Props) => {
     try {
       // Use the correct Stream SDK API for screen sharing
       if (isScreenSharing) {
-        // Stop screen sharing
+        // Stop screen sharing - use the correct API
         await call.screenShare.disable()
         setIsScreenSharing(false)
         onScreenShare?.(false)
       } else {
-        // Start screen sharing
+        // Start screen sharing - use the correct API
         await call.screenShare.enable()
         setIsScreenSharing(true)
         onScreenShare?.(true)
@@ -114,34 +163,24 @@ const MediaControls = ({ isHost, onScreenShare }: Props) => {
     if (!call) return
 
     try {
-      // First join the call with create option and proper permissions
-      await call.join({ 
-        create: true,
-        data: {
-          // Ensure user has proper permissions
-          members: [
-            {
-              user_id: call.currentUserId,
-              role: 'admin' // Give admin role for publishing permissions
-            }
-          ]
-        }
-      })
-      setIsJoined(true)
+      console.log('Joining call with token permissions...')
       
-      // Auto-enable camera and microphone after joining (with delay)
-      setTimeout(async () => {
-        try {
-          if (camera && !isCameraMuted) {
-            await camera.enable()
-          }
-          if (microphone && !isMicMuted) {
-            await microphone.enable()
-          }
-        } catch (error) {
-          console.log('Auto-enable media failed (this is normal):', error)
-        }
-      }, 2000) // Increased delay for better reliability
+      // Check if already joined
+      const callState = call.state.callingState
+      if (callState === 'joined') {
+        console.log('Already joined the call')
+        setIsJoined(true)
+        return
+      }
+      
+      // Join the existing call - permissions come from JWT token
+      await call.join({ 
+        create: true, // Allow creation if needed
+      })
+      
+      setIsJoined(true)
+      console.log('Successfully joined call with token permissions')
+      
     } catch (error) {
       console.error('Error joining call:', error)
       alert('Failed to join webinar: ' + (error instanceof Error ? error.message : 'Unknown error'))

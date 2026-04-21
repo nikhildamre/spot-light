@@ -79,26 +79,36 @@ export async function onAuthenticateUser() {
     } catch (dbError: any) {
       console.log('Database Error:', dbError.message)
       
-      // If database tables don't exist, return a mock user for development
-      if (dbError.code === 'P2021' || dbError.message?.includes('does not exist')) {
-        console.log('⚠️  Database tables not found. Using mock user for development.')
+      // Enhanced fallback for any database connection issues
+      if (dbError.code === 'P2021' || 
+          dbError.message?.includes('does not exist') ||
+          dbError.message?.includes("Can't reach database server") ||
+          dbError.message?.includes('connection') ||
+          dbError.code === 'P1001') {
+        
+        console.log('⚠️  Database connection failed. Using mock user for development.')
+        console.log('Database error details:', {
+          code: dbError.code,
+          message: dbError.message?.substring(0, 100)
+        })
+        
         return {
           status: 200,
           user: {
-            id: 'mock-user-id',
+            id: `mock-${user.id}`,
             clerkId: user.id,
             email: user.emailAddresses[0].emailAddress,
             name: user.firstName + ' ' + user.lastName,
             profileImage: user.imageUrl,
             stripeConnectId: null,
-            lastLoginAt: null,
+            lastLoginAt: new Date(),
             subscription: false,
             stripeCustomerId: null,
             deletedAt: null,
             createdAt: new Date(),
             updatedAt: new Date(),
           },
-          warning: 'Using mock data - database not connected'
+          warning: 'Using mock data - database connection failed'
         }
       }
       

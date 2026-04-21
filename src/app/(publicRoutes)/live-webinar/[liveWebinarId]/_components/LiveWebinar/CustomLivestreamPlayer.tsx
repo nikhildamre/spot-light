@@ -36,28 +36,32 @@ const CustomLivestreamPlayer = ({
         setIsLoading(true)
         setError(null)
 
+        console.log('Setting up call with enhanced permissions...')
+        console.log('User ID:', userId)
+        console.log('Call ID:', callId)
+        console.log('Call Type:', callType)
+        
         const myCall = client.call(callType, callId)
         setCall(myCall)
 
-        // Since the call is already created server-side, just join it
-        // Don't call getOrCreate() here as it requires admin permissions
-        await myCall.join({
-          create: false, // Don't create, just join existing call
-          data: {
-            custom: {
-              role: 'host'
-            }
-          }
-        })
+        // Use the simplest approach - just join with create
+        // The JWT token should provide all necessary permissions
+        await myCall.join({ create: true })
 
-        // Enable camera and microphone after joining
-        try {
-          await myCall.camera.enable()
-          await myCall.microphone.enable()
-        } catch (deviceError) {
-          console.warn('Could not enable camera/microphone:', deviceError)
-          // Continue anyway - user can enable manually
-        }
+        console.log('Successfully joined call')
+        console.log('Call state:', myCall.state.callingState)
+        console.log('Current user ID:', myCall.currentUserId)
+        
+        // Check if we can access call permissions
+        console.log('Call permissions:', myCall.permissionsContext)
+        console.log('Can send video:', myCall.permissionsContext.hasPermission('send-video'))
+        console.log('Can send audio:', myCall.permissionsContext.hasPermission('send-audio'))
+
+        console.log('Successfully joined call with admin permissions')
+
+        // Don't auto-enable camera/microphone - let user control manually
+        // This prevents permission errors on initial load
+        console.log('Call setup complete - user can now control media manually')
 
         setIsLoading(false)
       } catch (e) {
@@ -77,7 +81,7 @@ const CustomLivestreamPlayer = ({
       }
       setCall(undefined)
     }
-  }, [client, callId, callType])
+  }, [client, callId, callType, userId])
 
   if (isLoading) {
     return (

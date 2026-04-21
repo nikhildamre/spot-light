@@ -42,36 +42,35 @@ export const generateStreamVideoToken = async (userId: string) => {
     }
 
     console.log('Generating Stream Video token for user:', userId)
-    console.log('Using API Key:', apiKey)
 
-    // Create JWT token manually with proper video publishing permissions
+    // Create JWT token with Stream SDK format
     const jwt = require('jsonwebtoken')
     
+    // Simplified payload focusing on essential permissions
     const payload = {
       user_id: userId,
       iss: apiKey,
       sub: `user/${userId}`,
       iat: Math.floor(Date.now() / 1000),
       exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60), // 24 hours
-      // Add video publishing capabilities
-      call_cids: ['*'], // Allow access to all calls
-      role: 'admin', // Admin role for publishing permissions
-      // Specific video permissions
+      
+      // Essential permissions for video publishing
+      call_cids: ['*'],
+      
+      // Core permissions that should allow video publishing
       permissions: [
         'CreateCall',
         'JoinCall',
-        'SendVideo',
+        'SendVideo', 
         'SendAudio',
         'ReceiveVideo',
-        'ReceiveAudio',
-        'UpdateCallSettings',
-        'UpdateCallPermissions'
+        'ReceiveAudio'
       ]
     }
     
     const token = jwt.sign(payload, apiSecret, { algorithm: 'HS256' })
     
-    console.log('Generated video token (first 30 chars):', token.substring(0, 30) + '...')
+    console.log('Generated simplified video token')
     
     return {
       success: true,
@@ -165,7 +164,12 @@ export const createOrGetCall = async (callId: string, userId: string) => {
                 mic_default_on: false,
                 speaker_default_on: true,
                 default_device: 'speaker',
-                access_request_enabled: false, // Disable access requests
+                access_request_enabled: false,
+                opus_dtx_enabled: true,
+                redundant_coding_enabled: true,
+                noise_cancellation: {
+                  mode: 'available'
+                }
               },
               video: {
                 camera_default_on: false,
@@ -174,23 +178,12 @@ export const createOrGetCall = async (callId: string, userId: string) => {
                   height: 720,
                   bitrate: 2000000
                 },
-                access_request_enabled: false, // Disable access requests
+                access_request_enabled: false,
+                camera_facing: 'front'
               },
-              // Grant all permissions to all users for this call
-              grants: {
-                admin: [
-                  'send-audio',
-                  'send-video', 
-                  'mute-users',
-                  'screenshare',
-                  'change-max-duration',
-                  'end-call'
-                ],
-                user: [
-                  'send-audio',
-                  'send-video',
-                  'screenshare'
-                ]
+              screensharing: {
+                enabled: true,
+                access_request_enabled: false
               }
             }
           }

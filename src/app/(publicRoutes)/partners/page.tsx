@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 
 export default function Partners() {
   return (
@@ -16,7 +16,7 @@ export default function Partners() {
               <span className="text-xl font-bold text-white">Spotlight</span>
             </Link>
             <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-              ← Back to Home
+              â† Back to Home
             </Link>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function Partners() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Technology Partners</h3>
                 <p className="text-gray-400 mb-6">Integrate your solutions with Spotlight's platform through our comprehensive APIs and SDKs.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Learn More →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Learn More â†’</Link>
               </div>
             </div>
 
@@ -62,7 +62,7 @@ export default function Partners() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Reseller Program</h3>
                 <p className="text-gray-400 mb-6">Earn competitive commissions by selling Spotlight to your clients with full sales and marketing support.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Apply Now →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Apply Now â†’</Link>
               </div>
             </div>
 
@@ -76,7 +76,7 @@ export default function Partners() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Solution Partners</h3>
                 <p className="text-gray-400 mb-6">Build custom solutions and implementations for enterprise clients with our professional services team.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Get Certified →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Get Certified â†’</Link>
               </div>
             </div>
           </div>
@@ -207,7 +207,7 @@ export default function Partners() {
           <div className="bg-gray-900 p-12 rounded-2xl border border-gray-800">
             <h2 className="text-3xl font-bold mb-6 text-white">Become a Partner</h2>
             <p className="text-gray-400 mb-8">
-              Ready to join our partner ecosystem? Let's discuss how we can grow together.
+              Ready to join our partner ecosystem? let&apos;s discuss how we can grow together.
             </p>
             <Link href="mailto:partners@spotlight.ai" className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 rounded-xl transition-all text-lg font-semibold">
               Contact Partner Team

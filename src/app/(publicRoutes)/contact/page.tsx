@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 
 export default function Contact() {
   return (
@@ -16,7 +16,7 @@ export default function Contact() {
               <span className="text-xl font-bold text-white">Spotlight</span>
             </Link>
             <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-              ← Back to Home
+              â† Back to Home
             </Link>
           </div>
         </div>

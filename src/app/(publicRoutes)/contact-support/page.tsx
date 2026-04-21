@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export default function ContactSupport() {
   return (
     <div className="min-h-screen bg-black text-white">
@@ -25,7 +23,7 @@ export default function ContactSupport() {
               <span className="text-violet-400">Support</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Get help from our expert support team. We're here 24/7 to ensure your webinars run smoothly.
+              Get help from our expert support team. We&apos;re here 24/7 to ensure your webinars run smoothly.
             </p>
           </div>
 
@@ -56,7 +54,7 @@ export default function ContactSupport() {
               </div>
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Email Support</h3>
-                <p className="text-gray-400 mb-6">Send us detailed questions and we'll respond within 2 hours during business hours.</p>
+                <p className="text-gray-400 mb-6">Send us detailed questions and we&apos;ll respond within 2 hours during business hours.</p>
               </div>
               <a href="mailto:support@spotlight.ai" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition-all text-center flex-shrink-0">
                 Send Email

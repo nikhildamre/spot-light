@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 
 export default function Press() {
   return (
@@ -16,7 +16,7 @@ export default function Press() {
               <span className="text-xl font-bold text-white">Spotlight</span>
             </Link>
             <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-              ← Back to Home
+              â† Back to Home
             </Link>
           </div>
         </div>
@@ -46,7 +46,7 @@ export default function Press() {
                   <div className="text-sm text-violet-400 mb-2">April 1, 2026</div>
                   <h3 className="text-2xl font-bold mb-4 text-white">Spotlight Raises $50M Series B to Revolutionize AI-Powered Webinars</h3>
                   <p className="text-gray-300 mb-4">Mumbai-based startup secures funding from leading VCs to expand AI voice assistant technology and global reach.</p>
-                  <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Read More →</Link>
+                  <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Read More â†’</Link>
                 </div>
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function Press() {
                   <div className="text-sm text-violet-400 mb-2">March 15, 2026</div>
                   <h3 className="text-2xl font-bold mb-4 text-white">Spotlight Launches GPT-4 Integration for Real-Time Webinar Assistance</h3>
                   <p className="text-gray-300 mb-4">New AI features enable natural conversations with attendees, boosting engagement by 300%.</p>
-                  <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Read More →</Link>
+                  <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Read More â†’</Link>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function Press() {
                   <div className="text-sm text-violet-400 mb-2">February 28, 2026</div>
                   <h3 className="text-2xl font-bold mb-4 text-white">Spotlight Reaches 10,000+ Enterprise Customers Milestone</h3>
                   <p className="text-gray-300 mb-4">Platform now serves major corporations across 150+ countries with 99.9% uptime.</p>
-                  <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Read More →</Link>
+                  <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Read More â†’</Link>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function Press() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Brand Assets</h3>
                 <p className="text-gray-400 mb-6">High-resolution logos, brand guidelines, and visual assets.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Download →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Download â†’</Link>
               </div>
             </div>
 
@@ -103,7 +103,7 @@ export default function Press() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Fact Sheet</h3>
                 <p className="text-gray-400 mb-6">Company overview, key statistics, and executive bios.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Download →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Download â†’</Link>
               </div>
             </div>
 
@@ -116,7 +116,7 @@ export default function Press() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Product Screenshots</h3>
                 <p className="text-gray-400 mb-6">High-quality screenshots and product demos.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Download →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Download â†’</Link>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 
 export default function Help() {
   return (
@@ -16,7 +16,7 @@ export default function Help() {
               <span className="text-xl font-bold text-white">Spotlight</span>
             </Link>
             <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-              ← Back to Home
+              â† Back to Home
             </Link>
           </div>
         </div>
@@ -149,7 +149,7 @@ export default function Help() {
             <div className="bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden">
               <button className="w-full p-6 text-left hover:bg-gray-800 transition-colors">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-bold text-white">What's the maximum number of attendees?</h3>
+                  <h3 className="text-xl font-bold text-white">what&apos;s the maximum number of attendees?</h3>
                   <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -192,7 +192,7 @@ export default function Help() {
               </button>
               <div className="px-6 pb-6">
                 <p className="text-gray-400">
-                  Absolutely! We're SOC 2 Type II certified, GDPR compliant, and use enterprise-grade encryption. 
+                  Absolutely! we&apos;re SOC 2 Type II certified, GDPR compliant, and use enterprise-grade encryption. 
                   All data is encrypted in transit and at rest. We also offer SSO, SAML, and other enterprise security features.
                 </p>
               </div>

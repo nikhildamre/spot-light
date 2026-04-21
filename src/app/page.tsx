@@ -196,7 +196,7 @@ export default async function Home() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                "Spotlight has completely transformed our webinar strategy. The AI voice assistant handles customer queries in real-time, and our conversion rates have increased by 300%. It's like having a sales team that never sleeps."
+                "                &quot;Spotlight has completely transformed our webinar strategy. The AI voice assistant handles customer queries in real-time, and our conversion rates have increased by 300%. It&apos;s like having a sales team that never sleeps.&quot;"
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-violet-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -221,7 +221,7 @@ export default async function Home() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                "The streaming quality is phenomenal - 4K without any lag, even with 10,000+ viewers. The breakout rooms feature has made our training sessions incredibly interactive. Best investment we've made this year."
+                "                &quot;The streaming quality is phenomenal - 4K without any lag, even with 10,000+ viewers. The breakout rooms feature has made our training sessions incredibly interactive. Best investment we&apos;ve made this year.&quot;"
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -246,7 +246,7 @@ export default async function Home() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                "From Mumbai to global reach - Spotlight helped us scale our educational platform internationally. The analytics are incredibly detailed, and the AI insights have improved our content strategy significantly."
+                "                &quot;From Mumbai to global reach - Spotlight helped us scale our educational platform internationally. The analytics are incredibly detailed, and the AI insights have improved our content strategy significantly.&quot;"
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -271,7 +271,7 @@ export default async function Home() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                "The security features are enterprise-grade. SOC 2 compliance was crucial for our financial services webinars. The customer support team is exceptional - they helped us migrate from our old platform seamlessly."
+                "                &quot;The security features are enterprise-grade. SOC 2 compliance was crucial for our financial services webinars. The customer support team is exceptional - they helped us migrate from our old platform seamlessly.&quot;"
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -296,7 +296,7 @@ export default async function Home() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                "ROI was immediate. Within the first month, we generated 5x more leads than our previous webinar solution. The AI agent qualification feature saves our sales team hours every day."
+                "                &quot;ROI was immediate. Within the first month, we generated 5x more leads than our previous webinar solution. The AI agent qualification feature saves our sales team hours every day.&quot;"
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -321,7 +321,7 @@ export default async function Home() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                "Perfect for our healthcare webinars. HIPAA compliance, crystal clear audio for medical presentations, and the recording quality is broadcast-level. Our medical conferences have never been more professional."
+                "                &quot;Perfect for our healthcare webinars. HIPAA compliance, crystal clear audio for medical presentations, and the recording quality is broadcast-level. Our medical conferences have never been more professional.&quot;"
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -452,7 +452,7 @@ export default async function Home() {
                 </div>
               </div>
               <p className="text-gray-300 mb-8 leading-relaxed text-lg">
-                Spotlight is the world's most advanced AI-powered webinar platform, proudly made in Mumbai, India. 
+                Spotlight is the world&apos;s most advanced AI-powered webinar platform, proudly made in Mumbai, India. 
                 Trusted by over 10,000 companies worldwide to create engaging live experiences that convert viewers into customers. 
                 Transform your business with cutting-edge AI technology and enterprise-grade streaming solutions.
               </p>

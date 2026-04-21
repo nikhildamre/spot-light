@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 
 export default function Community() {
   return (
@@ -16,7 +16,7 @@ export default function Community() {
               <span className="text-xl font-bold text-white">Spotlight</span>
             </Link>
             <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-              ← Back to Home
+              â† Back to Home
             </Link>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function Community() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Discord Server</h3>
                 <p className="text-gray-400 mb-6">Join our active Discord community for real-time discussions, tips, and support from fellow creators.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Join Discord →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Join Discord â†’</Link>
               </div>
             </div>
 
@@ -62,7 +62,7 @@ export default function Community() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Reddit Community</h3>
                 <p className="text-gray-400 mb-6">Share your webinar experiences, ask questions, and discover new strategies on our subreddit.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Visit r/Spotlight →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Visit r/Spotlight â†’</Link>
               </div>
             </div>
 
@@ -75,7 +75,7 @@ export default function Community() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold mb-4 text-white">Twitter/X</h3>
                 <p className="text-gray-400 mb-6">Follow us for product updates, webinar tips, and industry insights from the Spotlight team.</p>
-                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Follow @SpotlightAI →</Link>
+                <Link href="#" className="text-violet-400 hover:text-violet-300 font-semibold">Follow @SpotlightAI â†’</Link>
               </div>
             </div>
           </div>

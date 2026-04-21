@@ -42,7 +42,7 @@ export default function About() {
                 democratize AI-powered webinar technology, making it accessible to businesses of all sizes.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                Founded in Mumbai, India, we're proud to be at the forefront of the AI revolution, 
+                Founded in Mumbai, India, we&apos;re proud to be at the forefront of the AI revolution, 
                 helping companies worldwide create more engaging, interactive, and profitable webinar experiences.
               </p>
             </div>
@@ -81,7 +81,7 @@ export default function About() {
               </div>
               <h3 className="text-xl font-bold mb-4 text-white">Innovation</h3>
               <p className="text-gray-400">
-                We constantly push the boundaries of what's possible with AI and streaming technology.
+                We constantly push the boundaries of what&apos;s possible with AI and streaming technology.
               </p>
             </div>
             <div className="text-center p-8 bg-gray-900 rounded-2xl border border-gray-800">
@@ -151,7 +151,7 @@ export default function About() {
           <h2 className="text-3xl font-bold mb-6 text-white">Get in Touch</h2>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
             Have questions about our platform or want to learn more about how Spotlight can transform 
-            your webinar strategy? We'd love to hear from you.
+            your webinar strategy? We&apos;d love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <div className="flex items-center space-x-3 text-gray-300">

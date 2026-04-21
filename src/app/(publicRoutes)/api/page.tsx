@@ -30,7 +30,7 @@ export default function API() {
             <span className="text-violet-400 block">Developers</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-            Build custom integrations and extend Spotlight's capabilities with our comprehensive REST API.
+            Build custom integrations and extend Spotlight&apos;s capabilities with our comprehensive REST API.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="#" className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 rounded-xl transition-all font-semibold">

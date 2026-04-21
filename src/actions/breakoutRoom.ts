@@ -34,7 +34,7 @@ export async function createBreakoutRoom(params: CreateBreakoutRoomParams) {
         description: params.description,
         aiAgentId: params.aiAgentId,
         maxParticipants: params.maxParticipants || 10,
-        streamCallId: callResult.call?.id,
+        streamCallId: (callResult.call as any)?.id,
         status: 'WAITING',
       },
       include: {

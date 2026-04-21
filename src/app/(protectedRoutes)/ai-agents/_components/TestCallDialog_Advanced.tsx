@@ -37,7 +37,7 @@ const TestCallDialog_Advanced = ({ agentId, agentName, onClose }: Props) => {
         const result = await getVapiAssistants()
         
         if (result.success && result.assistants) {
-          const assistant = result.assistants.find(a => a.id === agentId)
+          const assistant = result.assistants.find((a: any) => a.id === agentId)
           
           if (!assistant) {
             setCallStatus('❌ Assistant not found in VAPI dashboard')

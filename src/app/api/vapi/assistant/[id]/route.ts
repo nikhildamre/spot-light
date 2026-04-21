@@ -5,10 +5,10 @@ const VAPI_BASE_URL = 'https://api.vapi.ai'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const assistantId = params.id
+    const { id: assistantId } = await params
 
     if (!VAPI_PRIVATE_KEY) {
       return NextResponse.json(
